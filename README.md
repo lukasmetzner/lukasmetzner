@@ -6,7 +6,8 @@
 ``` bash
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
 curl https://raw.githubusercontent.com/lukasmetzner/lukasmetzner/main/.tmux.conf > ~/.tmux.conf && \
-curl https://raw.githubusercontent.com/lukasmetzner/lukasmetzner/main/.vimrc > ~/.vimrc
+curl https://raw.githubusercontent.com/lukasmetzner/lukasmetzner/main/.vimrc > ~/.vimrc && \
+vim +PlugInstall
 ```
 
 <!---
