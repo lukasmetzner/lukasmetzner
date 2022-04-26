@@ -1,3 +1,11 @@
+call plug#begin()
+Plug 'vim-syntastic/syntastic'
+Plug 'luochen1990/rainbow'
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-airline/vim-airline'
+Plug 'ntpeters/vim-better-whitespace'
+call plug#end()
+
 syntax on
 set mouse=a
 set encoding=utf-8
@@ -8,5 +16,5 @@ set ai
 set number
 set hlsearch
 set ruler
-colorscheme palenight
+colorscheme delek
 highlight Comment ctermfg=green
