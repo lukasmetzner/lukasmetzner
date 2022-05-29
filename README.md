@@ -4,10 +4,8 @@
 - 🌱 I have got a bachelors degree in computer science and going to pursue my masters soon.
 
 ``` bash
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
 curl https://raw.githubusercontent.com/lukasmetzner/lukasmetzner/main/.tmux.conf > ~/.tmux.conf && \
 curl https://raw.githubusercontent.com/lukasmetzner/lukasmetzner/main/.vimrc > ~/.vimrc && \
-vim +PlugInstall
 ```
 
 <!---
