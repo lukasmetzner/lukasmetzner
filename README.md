@@ -5,7 +5,7 @@
 
 ``` bash
 curl https://raw.githubusercontent.com/lukasmetzner/lukasmetzner/main/.tmux.conf > ~/.tmux.conf && \
-curl https://raw.githubusercontent.com/lukasmetzner/lukasmetzner/main/.vimrc > ~/.vimrc &&
+curl https://raw.githubusercontent.com/lukasmetzner/lukasmetzner/main/.vimrc > ~/.vimrc
 ```
 
 <!---
