@@ -1,13 +1,4 @@
-call plug#begin()
-Plug 'vim-syntastic/syntastic'
-Plug 'luochen1990/rainbow'
-Plug 'sheerun/vim-polyglot'
-Plug 'vim-airline/vim-airline'
-Plug 'ntpeters/vim-better-whitespace'
-call plug#end()
-
 syntax on
-set mouse=r
 set encoding=utf-8
 set tabstop=2
 set shiftwidth=2
