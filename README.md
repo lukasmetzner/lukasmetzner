@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @lukasmetzner
-- 💻 I am a Machine Learning Engineer.
+- 💻 I am a Software Engineer from Germany.
 - 👀 I am interested in science and sports
-- 🌱 I have got a bachelors degree in computer science and going to pursue my masters soon.
+- 🌱 I have got a bachelors degree in computer science.
 
 ``` bash
 curl https://raw.githubusercontent.com/lukasmetzner/lukasmetzner/main/.tmux.conf > ~/.tmux.conf && \
