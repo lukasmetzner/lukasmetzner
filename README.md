@@ -2,7 +2,6 @@
 - 💻 I am a Software Engineer from Germany.
 - 👀 I am interested in science and sports
 - 🌱 I have got a bachelors degree in computer science.
-- 📃 Here is my [CV](https://github.com/lukasmetzner/cv/blob/main/lukasmetzner-cv.pdf)
 
 ``` bash
 curl https://raw.githubusercontent.com/lukasmetzner/lukasmetzner/main/.tmux.conf > ~/.tmux.conf && \
