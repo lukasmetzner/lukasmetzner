@@ -1,2 +1,9 @@
 [window]
-opacity = 0.95
+opacity = 0.9
+[font]
+size=15.0
+[keyboard]
+bindings = [
+  { key = "Right", mods = "Alt", chars = "\u001BF" },
+  { key = "Left",  mods = "Alt", chars = "\u001BB" },
+]
