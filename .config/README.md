@@ -12,7 +12,7 @@ sudo apt install -y \
     pavucontrol \
     playerctl \
     swaylock \
-    mako \
+    mako-notifier \
     xdg-desktop-portal-wlr \
     grim \
     slurp
