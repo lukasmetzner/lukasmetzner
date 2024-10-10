@@ -13,7 +13,9 @@ sudo apt install -y \
     playerctl \
     swaylock \
     mako \
-    xdg-desktop-portal-wlr
+    xdg-desktop-portal-wlr \
+    grim \
+    slurp
 ```
 
 
