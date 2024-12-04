@@ -4,7 +4,7 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-font pango: monospace 12
+font pango:monospace 12
 gaps outer 10px
 gaps inner 10px
 
@@ -29,15 +29,16 @@ include /etc/sway/config-vars.d/*
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/lukasmetzner/Pictures/torii_gate_anime.jpg fill
+output * bg /home/lukasmetzner/Pictures/pixelart/1168050.png fill
 
 # Home Office
-output eDP-1 mode 1920x1200@60hz position 3440,0
-output DP-8 mode 3440x1440@60hz position 0,0
-output DP-9 mode 3840x2160@60hz position 0,-2160
+output eDP-1 mode 1920x1200@60hz position 3840,0
+output DP-9 mode 3440x1440@60hz position 0,-1440
+output DP-8 mode 3840x2160@60hz position 0,0
 
 # Office
-output DP-2 mode 3440x1440@60hz position 0,0
+#output eDP-1 mode 1920x1200@60hz position 0,0
+#output DP-2 mode 3440x1440@60hz position -3440,0
 
 #
 # Example configuration:
@@ -108,7 +109,7 @@ input * {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-    bindsym $mod+l exec swaylock -c 000000
+    bindsym $mod+l exec swaylock -i /home/lukasmetzner/Pictures/Hetzner-DC.jpg
 #
 # Moving around:
 #
@@ -222,6 +223,8 @@ bindsym $mod+r mode "resize"
 bar {
     swaybar_command waybar
 }
+
+for_window [app_id=".*"] border none
 
 exec nm-applet
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
