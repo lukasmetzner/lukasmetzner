@@ -15,7 +15,8 @@ sudo apt install -y \
     mako-notifier \
     xdg-desktop-portal-wlr \
     grim \
-    slurp
+    slurp \
+    wl-clipboard
 ```
 
 
