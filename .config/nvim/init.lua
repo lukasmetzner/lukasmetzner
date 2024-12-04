@@ -3,6 +3,15 @@ vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 
+vim.opt.smartindent = true
+vim.opt.nu = true
+vim.opt.relativenumber = true
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+vim.opt.colorcolumn = "80,120"
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -97,9 +106,15 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
   handlers = {
     function(server_name)
-      require('lspconfig')["gopls"].setup({})
-      require('lspconfig')["lua_ls"].setup({})
       require('lspconfig')["rust_analyzer"].setup({})
+      require('lspconfig')["lua_ls"].setup({})
+      require('lspconfig')["gopls"].setup({
+        settings = {
+          gopls =  {
+            buildFlags =  {"-tags=e2e,integration"}
+          },
+        },
+      })
     end,
   },
 })
