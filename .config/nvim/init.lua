@@ -3,6 +3,8 @@ vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 
+vim.cmd("match errorMsg /\\s\\+$/")
+
 vim.opt.smartindent = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -11,6 +13,8 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.colorcolumn = "80,120"
+vim.opt.wrap = true
+vim.opt.fixeol = false
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -53,6 +57,15 @@ require("lazy").setup({
 
 require("gruvbox").setup()
 vim.cmd.colorscheme "gruvbox"
+
+local telescope = require("telescope")
+telescope.setup({
+    pickers = {
+        find_files = {
+            hidden = true
+        }
+    }
+})
 
 local builtin = require("telescope.builtin")
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
