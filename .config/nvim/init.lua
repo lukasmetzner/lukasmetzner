@@ -1,4 +1,3 @@
-vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
@@ -15,6 +14,13 @@ vim.opt.undofile = true
 vim.opt.colorcolumn = "80,120"
 vim.opt.wrap = true
 vim.opt.fixeol = false
+
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -50,6 +56,8 @@ require("lazy").setup({
       {'neovim/nvim-lspconfig'},
       {'hrsh7th/cmp-nvim-lsp'},
       {'hrsh7th/nvim-cmp'},
+	  {'nvim-tree/nvim-tree.lua'},
+	  {'nvim-tree/nvim-web-devicons'},
   },
   -- automatically check for plugin updates
   checker = { enabled = true },
@@ -157,5 +165,20 @@ cmp.setup({
     expand = function(args)
       vim.snippet.expand(args.body)
     end,
+  },
+})
+
+require("nvim-tree").setup({
+  sort = {
+    sorter = "case_sensitive",
+  },
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
   },
 })
