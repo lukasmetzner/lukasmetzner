@@ -18,5 +18,6 @@ sudo apt install -y \
     slurp \
     wl-clipboard
 ```
-
+## Font
+- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip
 
