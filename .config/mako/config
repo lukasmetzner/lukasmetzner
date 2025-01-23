@@ -1,0 +1,6 @@
+output=*
+anchor=top-right
+width=300
+margin=10
+default-timeout=5000
+max-history=2
