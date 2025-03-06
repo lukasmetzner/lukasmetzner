@@ -11,7 +11,7 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
-vim.opt.colorcolumn = "80,120"
+vim.opt.colorcolumn = "80,100,120"
 vim.opt.wrap = true
 vim.opt.fixeol = false
 
@@ -129,6 +129,7 @@ require('mason-lspconfig').setup({
     function(server_name)
       require('lspconfig')["rust_analyzer"].setup({})
       require('lspconfig')["lua_ls"].setup({})
+	  require('lspconfig')["terraformls"].setup({})
       require('lspconfig')["gopls"].setup({
         settings = {
           gopls =  {
@@ -179,6 +180,6 @@ require("nvim-tree").setup({
     group_empty = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
   },
 })
