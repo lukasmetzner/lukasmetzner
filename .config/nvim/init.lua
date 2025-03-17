@@ -25,17 +25,17 @@ vim.opt.termguicolors = true
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out,                            "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -47,20 +47,24 @@ vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
 require("lazy").setup({
-  spec = {
-      { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
-      { 'nvim-telescope/telescope.nvim', tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' } },
-      {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
-      {'neovim/nvim-lspconfig'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/nvim-cmp'},
-	  {'nvim-tree/nvim-tree.lua'},
-	  {'nvim-tree/nvim-web-devicons'},
-  },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
+	spec = {
+		{ "ellisonleao/gruvbox.nvim",         priority = 1000,    config = true },
+		{ 'nvim-telescope/telescope.nvim',    tag = '0.1.8',      dependencies = { 'nvim-lua/plenary.nvim' } },
+		{ "nvim-treesitter/nvim-treesitter",  build = ":TSUpdate" },
+		{ 'williamboman/mason.nvim' },
+		{ 'williamboman/mason-lspconfig.nvim' },
+		{ 'neovim/nvim-lspconfig' },
+		{ 'hrsh7th/cmp-nvim-lsp' },
+		{ 'hrsh7th/nvim-cmp' },
+		{ 'nvim-tree/nvim-tree.lua' },
+		{ 'nvim-tree/nvim-web-devicons' },
+		{
+			'nvim-lualine/lualine.nvim',
+			dependencies = { 'nvim-tree/nvim-web-devicons' }
+		}
+	},
+	-- automatically check for plugin updates
+	checker = { enabled = true },
 })
 
 require("gruvbox").setup()
@@ -68,11 +72,11 @@ vim.cmd.colorscheme "gruvbox"
 
 local telescope = require("telescope")
 telescope.setup({
-    pickers = {
-        find_files = {
-            hidden = true
-        }
-    }
+	pickers = {
+		find_files = {
+			hidden = true
+		}
+	}
 })
 
 local builtin = require("telescope.builtin")
@@ -83,11 +87,11 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 
 local config = require("nvim-treesitter.configs")
 config.setup({
-    ensure_installed = { "lua", "go", "rust", "vim", "python" },
-    sync_install = false,
-    auto_install = true,
-    highlight = { enable = true },
-    indent = { enable = true },  
+	ensure_installed = { "lua", "go", "rust", "vim", "python" },
+	sync_install = false,
+	auto_install = true,
+	highlight = { enable = true },
+	indent = { enable = true },
 })
 
 -- Reserve a space in the gutter
@@ -98,88 +102,130 @@ vim.opt.signcolumn = 'yes'
 -- This should be executed before you configure any language server
 local lspconfig_defaults = require('lspconfig').util.default_config
 lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-  'force',
-  lspconfig_defaults.capabilities,
-  require('cmp_nvim_lsp').default_capabilities()
+	'force',
+	lspconfig_defaults.capabilities,
+	require('cmp_nvim_lsp').default_capabilities()
 )
 
 -- This is where you enable features that only work
 -- if there is a language server active in the file
 vim.api.nvim_create_autocmd('LspAttach', {
-  desc = 'LSP actions',
-  callback = function(event)
-    local opts = {buffer = event.buf}
+	desc = 'LSP actions',
+	callback = function(event)
+		local opts = { buffer = event.buf }
 
-    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-  end,
+		vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+		vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+		vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+		vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+		vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+		vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+		vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+		vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+		vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+		vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+	end,
 })
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  handlers = {
-    function(server_name)
-      require('lspconfig')["rust_analyzer"].setup({})
-      require('lspconfig')["lua_ls"].setup({})
-	  require('lspconfig')["terraformls"].setup({})
-      require('lspconfig')["gopls"].setup({
-        settings = {
-          gopls =  {
-            buildFlags =  {"-tags=e2e,integration"}
-          },
-        },
-      })
-    end,
-  },
+	handlers = {
+		function(server_name)
+			require('lspconfig')["rust_analyzer"].setup({})
+			require('lspconfig')["lua_ls"].setup({})
+			require('lspconfig')["terraformls"].setup({})
+			require('lspconfig')["gopls"].setup({
+				settings = {
+					gopls = {
+						buildFlags = { "-tags=e2e,integration" }
+					},
+				},
+			})
+		end,
+	},
 })
 
 local cmp = require("cmp")
 
 cmp.setup({
-  sources = {
-    {name = 'nvim_lsp'},
-  },
-  mapping = cmp.mapping.preset.insert({
-    -- Navigate between completion items
-    ['<C-p>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
-    ['<C-n>'] = cmp.mapping.select_next_item({behavior = 'select'}),
+	sources = {
+		{ name = 'nvim_lsp' },
+	},
+	mapping = cmp.mapping.preset.insert({
+		-- Navigate between completion items
+		['<C-p>'] = cmp.mapping.select_prev_item({ behavior = 'select' }),
+		['<C-n>'] = cmp.mapping.select_next_item({ behavior = 'select' }),
 
-    -- `Enter` key to confirm completion
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
+		-- `Enter` key to confirm completion
+		['<CR>'] = cmp.mapping.confirm({ select = false }),
 
-    -- Ctrl+Space to trigger completion menu
-    ['<C-Space>'] = cmp.mapping.complete(),
+		-- Ctrl+Space to trigger completion menu
+		['<C-Space>'] = cmp.mapping.complete(),
 
-    -- Scroll up and down in the completion documentation
-    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-d>'] = cmp.mapping.scroll_docs(4),
-  }),
-  snippet = {
-    expand = function(args)
-      vim.snippet.expand(args.body)
-    end,
-  },
+		-- Scroll up and down in the completion documentation
+		['<C-u>'] = cmp.mapping.scroll_docs(-4),
+		['<C-d>'] = cmp.mapping.scroll_docs(4),
+	}),
+	snippet = {
+		expand = function(args)
+			vim.snippet.expand(args.body)
+		end,
+	},
 })
 
 require("nvim-tree").setup({
-  sort = {
-    sorter = "case_sensitive",
-  },
-  view = {
-    width = 30,
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = false,
-  },
+	sort = {
+		sorter = "case_sensitive",
+	},
+	view = {
+		width = 30,
+	},
+	renderer = {
+		group_empty = true,
+	},
+	filters = {
+		dotfiles = false,
+	},
 })
+
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'gruvbox',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    always_show_tabline = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 100,
+      tabline = 100,
+      winbar = 100,
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
