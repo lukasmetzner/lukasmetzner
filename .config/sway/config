@@ -5,8 +5,8 @@
 # Read `man 5 sway` for a complete reference.
 
 font pango:monospace 12
-gaps outer 10px
-gaps inner 10px
+gaps outer 0px
+gaps inner 0px
 
 ### Variables
 #
@@ -29,11 +29,12 @@ include /etc/sway/config-vars.d/*
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/lukasmetzner/Pictures/anime/luffy-ocean.jpg fill
+output * bg /home/lukasmetzner/Pictures/sky.jpg fill
 
 # Home Office
-output eDP-1 mode 1920x1200@60hz position 3840,0
-output DP-9 mode 3840x2160@60hz position 0,0
+output eDP-1 mode 1920x1200@60hz position 7680,0
+output DP-9 mode 3840x2160@60hz position 3840,0
+output HDMI-A-1 mode 3840x2160@60hz position 0,0
 
 # Office
 #output eDP-1 mode 1920x1200@60hz position 3440,0
@@ -150,9 +151,9 @@ input * {
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
-    workspace 1 output DP-8
-    workspace 2 output DP-9
-    workspace 3 output eDP-1
+    #workspace 1 output DP-8
+    #workspace 2 output DP-9
+    #workspace 3 output eDP-1
 #
 # Layout stuff:
 #
