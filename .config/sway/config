@@ -224,7 +224,7 @@ bar {
     swaybar_command waybar
 }
 
-for_window [app_id=".*"] border none
+for_window [app_id=".*"] border pixel 3
 
 exec nm-applet
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
