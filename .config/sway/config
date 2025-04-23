@@ -110,7 +110,7 @@ input * {
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
     bindsym $mod+l exec swaylock -i /home/lukasmetzner/Pictures/Hetzner-DC.jpg
-    bindsym $mod+p exec swaylock -i /home/lukasmetzner/Pictures/Hetzner-DC.jpg & systemctl suspend
+    bindsym $mod+Shift+p exec swaylock -i /home/lukasmetzner/Pictures/Hetzner-DC.jpg & systemctl suspend
 #
 # Moving around:
 #
