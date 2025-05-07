@@ -1,6 +1,5 @@
 - 👋 Hi, I’m @lukasmetzner
-- 💻 I am a Software Engineer from Germany.
-- 👀 I am interested in science and sports
+- 💻 I am a Software Engineer from Germany
 
 ``` bash
 curl https://raw.githubusercontent.com/lukasmetzner/lukasmetzner/main/.tmux.conf > ~/.tmux.conf && \
