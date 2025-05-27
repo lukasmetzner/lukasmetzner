@@ -50,6 +50,7 @@ require("lazy").setup({
 	spec = {
 		{ "ellisonleao/gruvbox.nvim",         priority = 1000,    config = true },
 		{ 'nvim-telescope/telescope.nvim',    tag = '0.1.8',      dependencies = { 'nvim-lua/plenary.nvim' } },
+		{ 'nvim-telescope/telescope-project.nvim', dependencies = { 'nvim-telescope/telescope.nvim' } },
 		{ "nvim-treesitter/nvim-treesitter",  build = ":TSUpdate" },
 		{ 'williamboman/mason.nvim' },
 		{ 'williamboman/mason-lspconfig.nvim' },
@@ -58,10 +59,7 @@ require("lazy").setup({
 		{ 'hrsh7th/nvim-cmp' },
 		{ 'nvim-tree/nvim-tree.lua' },
 		{ 'nvim-tree/nvim-web-devicons' },
-		{
-			'nvim-lualine/lualine.nvim',
-			dependencies = { 'nvim-tree/nvim-web-devicons' }
-		},
+		{ 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
 		{ 'lewis6991/gitsigns.nvim' }
 	},
 	-- automatically check for plugin updates
@@ -72,6 +70,13 @@ require("gruvbox").setup()
 vim.cmd.colorscheme "gruvbox"
 
 local telescope = require("telescope")
+telescope.load_extension('project')
+vim.api.nvim_set_keymap(
+	'n',
+	'<C-p>',
+	":lua require'telescope'.extensions.project.project{}<CR>",
+	{noremap = true, silent = true}
+)
 telescope.setup({
 	pickers = {
 		find_files = {
